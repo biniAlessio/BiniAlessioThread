@@ -15,19 +15,20 @@ public class GraficaCorsa extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GraficaCorsa.class.getName());
     private ArrayList<Atleta> atleti;
     private int posizione = 1; 
-
+    
+    // costruttore 
      public GraficaCorsa(ArrayList<Atleta> atletiRicevuti) {
         this.atleti = atletiRicevuti;
         initComponents(); 
         this.setLocationRelativeTo(null);
         avviaGara();     
     }
-  
+     //avvia la gara  
        private void avviaGara() {
     javax.swing.JProgressBar[] barre = {pb1, pb2, pb3, pb4, pb5};
-
+    
     for (int i = 0; i < atleti.size(); i++) {
-   
+    //serve per mettere i nomi sopra la progress bar
         barre[i].setString(atleti.get(i).getNome() + " " + atleti.get(i).getCognome());
         barre[i].setStringPainted(true);
 
@@ -35,7 +36,7 @@ public class GraficaCorsa extends javax.swing.JFrame {
         atleti.get(i).corsa(barre[i], txtImprevisti, this);
     }
 }
-       
+           
 public void atletaArrivato(String nomeCompleto) {
     javax.swing.SwingUtilities.invokeLater(() -> {
         txtClassifica.append(posizione + "° - " + nomeCompleto + "\n");

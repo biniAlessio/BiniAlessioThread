@@ -113,6 +113,7 @@ public class GraficaIscrizione extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIscriviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIscriviActionPerformed
+        // controlli per gli errori o ripetizioni degli atleti
         if (atleti.size() >= 5) {
         JOptionPane.showMessageDialog(this, "Massimo 5 atleti!");
         return;
@@ -126,13 +127,11 @@ public class GraficaIscrizione extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Inserisci nome e cognome!");
         return;
     }
-
     
     if (!nome.matches("[a-z A-Z]+") || !cognome.matches("[a-z A-Z]+")) {
         JOptionPane.showMessageDialog(this, "Non puoi inserire numeri nel nome o nel cognome");
         return;
     }
-
     
     for (Atleta a : atleti) {
         if (a.getNome().equalsIgnoreCase(nome) && a.getCognome().equalsIgnoreCase(cognome)) {
@@ -140,19 +139,18 @@ public class GraficaIscrizione extends javax.swing.JFrame {
             return;
         }
     }
-
-    
+   
     atleti.add(new Atleta(nome, cognome));
     JOptionPane.showMessageDialog(this, "Atleta iscritto (" + atleti.size() + "/5)");
-    
-    
+       
     txtNome.setText("");
     txtCognome.setText("");
     txtNome.requestFocus(); 
     }//GEN-LAST:event_btnIscriviActionPerformed
 
     private void btnAvviaGaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvviaGaraActionPerformed
-       if (atleti.isEmpty()) {
+        // serve per avviare la gara
+        if (atleti.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Iscrivi almeno un atleta!");
             return;
         }
